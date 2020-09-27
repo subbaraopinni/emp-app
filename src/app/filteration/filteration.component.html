@@ -1,0 +1,108 @@
+<form [formGroup]="filterationForm">
+  <div class="row">
+
+    <div class="col-md-6">
+      <h3>Enter 1st Emp</h3>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" />
+      </div>
+      <div class="form-group">
+        <label for="firstName">Age</label>
+        <input type="text" class="form-control" placeholder="age" formControlName="age" />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Country</label>
+        <input type="text" class="form-control" placeholder="country" formControlName="country" />
+      </div>
+
+      <div class="input-group-btn">
+        <button class="btn btn-primary" type="submit" (click)="onSubmitFirst()">First List
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h3>Enter 2nd Emp</h3>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" class="form-control" placeholder="First Name" formControlName="firstName2" />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName2" />
+      </div>
+      <div class="form-group">
+        <label for="firstName">Age</label>
+        <input type="text" class="form-control" placeholder="age" formControlName="age2" />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Country</label>
+        <input type="text" class="form-control" placeholder="country" formControlName="country2" />
+      </div>
+
+      <div class="input-group-btn">
+        <button class="btn btn-primary" type="submit" (click)="onSubmitSecond()">Second List
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-6" *ngIf="filtrations.length">
+      <h4>First Employee List</h4>
+      <table class="table" >
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>Country</th>
+        </tr>
+        <tr *ngFor="let filter of filtrations; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{filter.firstName}}</td>
+          <td>{{filter.lastName}}</td>
+          <td>{{filter.age}}</td>
+          <td>{{filter.country}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-md-6"  *ngIf="filtrations2.length">
+      <h4>Second Employee List</h4>
+      <table class="table">
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>Country</th>
+        </tr>
+        <tr *ngFor="let filter of filtrations2; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{filter.firstName}}</td>
+          <td>{{filter.lastName}}</td>
+          <td>{{filter.age}}</td>
+          <td>{{filter.country}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <input type="text" *ngIf="filtrations.length" class="form-control" placeholder="Filter by Name"
+      [(ngModel)]="filterName" formControlName="filter.filterName" />
+    <div class="inline-group" *ngIf="filtrations.length">
+      <button class="btn btn-primary" type="submit" (click)="fetchOutput()">Filter Result
+      </button>
+    </div>
+
+    <div class="alert alert-success" role="alert" *ngIf="filtrations.length">
+      Result
+      <ul class="list-group" *ngFor="let result of resultDetails; let i = index">
+        <li class="list-group-item">Name: {{result.firstName}} {{result.lastName}} -
+          {{result.age}} </li>
+      </ul>
+    </div>
+  </div>
+</form>

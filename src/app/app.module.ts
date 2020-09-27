@@ -5,12 +5,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ElectionComponent } from './election/election.component';
 import { EquationComponent } from './equation/equation.component';
+import { FilterationComponent } from './filteration/filteration.component';
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
     ElectionComponent,
-    EquationComponent
+    EquationComponent,
+      FilterationComponent
    ],
   imports: [
     BrowserModule,

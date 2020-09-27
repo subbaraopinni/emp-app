@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-equation',
   templateUrl: './equation.component.html',
-  styleUrls: ['./equation.component.scss']
+  styleUrls: ['./equation.component.css']
 })
 export class EquationComponent{
   public firstResult: any;
