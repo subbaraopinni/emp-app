@@ -1,0 +1,57 @@
+<div class="jumbotron">
+  <h3 class="text-center">Election Voting</h3>
+  <div class="row">
+    <form [formGroup]="electionForm" (ngSubmit)="onSubmit()">
+
+      <div class="col-xs-6 col-md-12">
+
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Candidate Name" formControlName="firstName" />
+          <input type="text" class="form-control" placeholder="Candidate Sur Name" formControlName="surName" />
+          <input type="text" class="form-control" placeholder="dob" formControlName="dob" />
+          <!-- <span
+            *ngIf="(electionDetail.dirty || electionDetail.touched) && electionDetail.invalid && electionDetail.errors.required">
+            Election name is required.
+          </span> -->
+          <select formControlName="electionRegion">
+            <option>Choose Region</option>
+            <option *ngFor="let region of electionRegion">{{region}}</option>
+          </select>
+          <div class="input-group-btn">
+            <button class="btn btn-primary" type="submit">Add Voter List
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <table class="table" *ngIf="elections.length">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Sur Name</th>
+          <th>DOB</th>
+          <th>Region</th>
+          <th>Vote Count</th>
+          <th>Vote</th>
+        </tr>
+        <tr *ngFor="let election of elections; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{election.firstName}}</td>
+          <td>{{election.surName}}</td>
+          <td>{{election.dob}}</td>
+          <td>{{election.region}}</td>
+          <td>{{election.voteCount}}</td>
+          <td (click)="voteCandiate(i)"><span class="vote badge badge-primary badge-pill">Vote</span></td>
+        </tr>
+      </table>
+
+      <div class="alert alert-success" role="alert" *ngIf="elections.length">
+        Winner
+        <ul class="list-group" *ngFor="let result of winnerDetails; let i = index">
+          <li class="list-group-item">Name: {{result.firstName}} {{result.surName}} -
+            <span class="badge badge-primary badge-pill">{{result.voteCount}} Votes</span></li>
+        </ul>
+      </div>
+    </form>
+  </div>
+</div>
